@@ -77,9 +77,9 @@ class Call:
 
         if returns:
             return {
-                name: apply_handler(handler, value) if handler else value
-                for (name, handler), value
-                in zip(returns, decoded)
+                single_return[0]: apply_handler(single_return[1], decoded) if single_return[1] else decoded
+                for single_return
+                in returns
             }
         else:
             return decoded if len(decoded) > 1 else decoded[0]
